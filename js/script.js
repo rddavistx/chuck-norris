@@ -23,6 +23,30 @@ $(document).ready(function() {
 
   })
 
+  $('#name').on('submit', function(e) {
+    e.preventDefault();
+    var firstName = $('#first').val();
+    var lastName = $('#last').val();
+
+    if ($('#first').val() === '') {
+      firstName = "Chuck";
+    }
+    if ($('#last').val() === "") {
+      lastName = "Norris"
+    }
+    $.ajax({
+      url: 'http://api.icndb.com/jokes/random?firstName=' + firstName + '&lastName=' + lastName
+    }).done(function(data) {
+      console.log('was clicked');
+      console.log(firstName);
+      $('#currentJoke').text(data.value.joke)
+
+    })
+
+
+  })
+
+
 
 
 
